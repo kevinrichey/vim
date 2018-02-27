@@ -6,22 +6,73 @@ behave mswin
 "Enable filetype plugins
 filetype plugin on
 
+" Config Variables
+
+let s:tempdir = "temp/"
+let s:indent = 2
+
+" Setup the temp directory for backup and undo files
+
+if isdirectory($HOME."/.vim")
+  let s:vimfiles = $HOME."/.vim/"
+elseif isdirectory($HOME."/vimfiles")
+  let s:vimfiles = $HOME."/vimfiles/"
+endif
+
+let s:temppath = s:vimfiles.s:tempdir
+
+if !isdirectory(s:tempdir)
+  mkdir(s:tempdir)
+endif
+
+" === my default settings ===
+
+" Indentation & tabs
+set autoindent                " Auto indent
+set expandtab                 " Spaces, not tabs
+let &tabstop = s:indent       " Tab spacing
+let &shiftwidth = s:indent    " Indent spacing, same as tabs
+
+" Backup & Undo files
+set autowriteall      " Automatically save when switching buffers
+set writebackup 			" Backup current file
+set nobackup					" Delete the backup file afterwards
+let &backupdir = s:temppath
+let &undodir   = s:temppath
+
+" Searching
+set ignorecase       " case-insensitive searching
+
+" Display 
+set lbr!             " No line break
+set textwidth=0      " Don't auto-CR at and of a line.
+set number           " Show line numbers
+set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
+
+" GUI
+set guioptions+=b    " Turn on horizontal scroll bar in GUI
+set guifont=consolas:h12
+highlight Folded guibg=Black guifg=DarkGray
+
 "=== My key mappings ===
 
-map gf :e <cfile><CR>
-map <F1> :exec "help ".expand("<CWORD><CR>
+nmap gf :e <cfile><CR>
+nmap <F1> :help <C-R><C-W><CR>
 
 " Search directory for word under cursor
-map <F3> :vimgrep /<C-R><C-W>/j ** <Bar> cw
+nmap <F3> :vimgrep /<C-R><C-W>/j ** <Bar> cw
+
+" Execute current line as vim ex
+nmap <F8> :exec getline(".")<CR>
 
 " Execute current line on the shell
-map <F9> :exec "silent ! start ".getline(".")<CR>
+nmap <F9> :exec "silent ! start ".getline(".")<CR>
 
 
 " Navigate buffers
-map <C-PageUp> :bprevious<CR>
-map <C-PageDown> :bnext<CR>
-map <C-Del> :bdelete!<CR>
+nmap <C-PageUp> :bprevious<CR>
+nmap <C-PageDown> :bnext<CR>
+nmap <C-Del> :bdelete!<CR>
 
 " Press spacebar to clear search highlghting
 nnoremap <space> :noh<CR><space>
@@ -39,31 +90,6 @@ an Kevin.Exec\ Vim :exec getline(".")<CR>
 an Kevin.Exec\ Shell :exec "silent ! start ".getline(".")<CR>
 an Kevin._vimrc :split $MYVIMRC
 an Kevin.Plugin :split $HOME/vimfiles/plugin/kevin.vim<CR>
-
-" === my default settings ===
-
-set autoindent					" Auto indent
-set autowriteall				" Automatically save when switching buffers
-set tabstop=2					" Tab spacing
-set shiftwidth=2				" Indent spacing
-set expandtab
-set guioptions+=b
-set number						" Show line numbers
-set writebackup 			" Backup current file
-set nobackup					" Delete the backup file afterwards
-set backupdir=~/vimfiles/backups
-set history=50					" keep 50 lines of command line history
-set showcmd						" display incomplete commands
-set lbr!		   " No line break
-set incsearch					" do incremental searching
-set ignorecase					" case-insensitive searching
-set nohlsearch		   " No search highlighting
-set textwidth=0      " Don't auto-CR at and of a line.
-set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
-
-" -- GUI --
-set guifont=consolas:h12
-highlight Folded guibg=Black guifg=DarkGray
 
 " vim-plug package manager
 
