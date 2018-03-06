@@ -3,7 +3,6 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-"Enable filetype plugins
 filetype plugin on
 
 " Config Variables
@@ -11,18 +10,19 @@ filetype plugin on
 let s:tempdir = "temp/"
 let s:indent = 2
 
-" Setup the temp directory for backup and undo files
-
+" Locate my vim files folder
 if isdirectory($HOME."/.vim")
-  let s:vimfiles = $HOME."/.vim/"
+  let g:myvimfiles = $HOME."/.vim/"
 elseif isdirectory($HOME."/vimfiles")
-  let s:vimfiles = $HOME."/vimfiles/"
+  let g:myvimfiles = $HOME."/vimfiles/"
+else
+  let g:myvimfiles = "."
 endif
 
-let s:temppath = s:vimfiles.s:tempdir
-
-if !isdirectory(s:tempdir)
-  mkdir(s:tempdir)
+" Setup the temp directory for backup and undo files
+let s:temppath = g:myvimfiles.s:tempdir
+if !isdirectory(s:temppath)
+  mkdir(s:temppath)
 endif
 
 " === my default settings ===
@@ -76,6 +76,9 @@ nmap <C-Del> :bdelete!<CR>
 
 " Press spacebar to clear search highlghting
 nnoremap <space> :noh<CR><space>
+
+" Extract new wiki page from cut text
+nmap <C-K>xw :new <C-R>..txt<CR>O<!-- *<C-R>.* --><CR><ESC>""p<ESC>Go<!-- vim:set ft=markdown: --><ESC>gg
 
 "=== Custom Menu Commands ====
 
