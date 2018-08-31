@@ -33,12 +33,15 @@ set expandtab                 " Spaces, not tabs
 let &tabstop = s:indent       " Tab spacing
 let &shiftwidth = s:indent    " Indent spacing, same as tabs
 
-" Backup & Undo files
+" Backup, Undo, Spelling
 set autowriteall      " Automatically save when switching buffers
 set writebackup 			" Backup current file
 set nobackup					" Delete the backup file afterwards
 let &backupdir = s:temppath
 let &undodir   = s:temppath
+
+" Figuriong out spell checking files, not ready yet
+" let &spellfile = g:myvimfiles."spell/en.latin1.add"
 
 " Searching
 set ignorecase       " case-insensitive searching
