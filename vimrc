@@ -1,3 +1,7 @@
+" 
+" Kevin Richey's vimrc basic Vim config file.
+" 
+
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -5,10 +9,12 @@ behave mswin
 
 filetype plugin on
 
-" Config Variables
-
-let s:tempdir = "temp/"
-let s:indent = 2
+"----------------------------------------------------------------------
+"      Config Variables
+" Change these to behavior throughout the file.
+"
+let s:tempdir = "temp/"    " Temp folder for backupdir, undodir, etc.
+let s:indent = 2           " Standard indent level
 
 " Locate my vim files folder
 if isdirectory($HOME."/.vim")
@@ -50,6 +56,9 @@ set ignorecase       " case-insensitive searching
 set lbr!             " No line break
 set textwidth=0      " Don't auto-CR at and of a line.
 set number           " Show line numbers
+set laststatus=2     " Always show status line
+" Status Line
+" Buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
 set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
 
 " GUI
