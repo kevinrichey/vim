@@ -13,8 +13,9 @@ filetype plugin on
 "      Config Variables
 " Change these to behavior throughout the file.
 "
-let s:tempdir = "temp/"    " Temp folder for backupdir, undodir, etc.
-let s:indent = 2           " Standard indent level
+let s:tempdir = "temp/"      " Temp folder for backupdir, undodir, etc.
+let s:indent = 4             " Standard indent level
+let g:markdown_folding = 1   " Enable Markdown folding
 
 " Locate my vim files folder
 if isdirectory($HOME."/.vim")
@@ -35,7 +36,7 @@ endif
 
 " Indentation & tabs
 set autoindent                " Auto indent
-set expandtab                 " Spaces, not tabs
+"set expandtab                 " Spaces, not tabs
 let &tabstop = s:indent       " Tab spacing
 let &shiftwidth = s:indent    " Indent spacing, same as tabs
 
@@ -57,9 +58,10 @@ set lbr!             " No line break
 set textwidth=0      " Don't auto-CR at and of a line.
 set number           " Show line numbers
 set laststatus=2     " Always show status line
-" Status Line
-" Buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
+                     " Status Line
+                     "   Buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
 set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
+set foldcolumn=3     " Show folding levels in left 3 columns
 
 " GUI
 set guioptions+=b    " Turn on horizontal scroll bar in GUI
@@ -89,9 +91,6 @@ nmap <C-Del> :bdelete!<CR>
 " Press spacebar to clear search highlghting
 nnoremap <space> :noh<CR><space>
 
-" Extract new wiki page from cut text
-nmap <C-K>xw :new <C-R>..txt<CR>O<!-- *<C-R>.* --><CR><ESC>""p<ESC>Go<!-- vim:set ft=markdown: --><ESC>gg
-
 "=== Custom Menu Commands ====
 
 an Kevin.New\ Page :call Kwr_InsertMarkdownFile()<CR>
@@ -106,13 +105,12 @@ an Kevin.Exec\ Shell :exec "silent ! start ".getline(".")<CR>
 an Kevin._vimrc :split $MYVIMRC
 an Kevin.Plugin :split $HOME/vimfiles/plugin/kevin.vim<CR>
 
-" vim-plug package manager
-
-call plug#begin('~/.vim/plugged')
-Plug 'drewtempelmeyer/palenight.vim'
-call plug#end()
-
+syntax on
 colorscheme palenight
+
+" Change status line over colorscheme
+hi statusline   ctermbg=gray ctermfg=black
+hi statuslineNC ctermfg=darkgray
 
 " Load Project-Specific local vim config
 

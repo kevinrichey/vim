@@ -20,21 +20,50 @@ nnoremap <C-Down>  ddp
 nnoremap <C-K>rv Vi{:s/\<<C-R>"\>/<C-R>./gc
 
 " Add Parameter
-nnoremap <C-K>ap  [[?)<CR>i, 
+nnoremap <C-K>ap  yiw[[kf)i,<ESC>pb
 
 " Rename Parameter
 nnoremap <C-K>rp /{<ESC>V%:s/\<<C-R>"\>/<C-R>./gc
 
 " Extract Variable
-nnoremap <C-K>xv Oauto <C-R>. = <C-R>";<ESC>
+nnoremap <C-K>xv O<C-R>. = <C-R>";<ESC>^
 
 " Extract Method
 "nnoremap <C-K>xm :call kwrExtractMethod()<CR>
-nnoremap <C-K>xm O<C-R>.<CR>{<ESC>""po}<ESC>%u
+nnoremap <C-K>xm  o<C-R>.<CR>{<CR>}<ESC>P
+
+function! KwrExtractMethod() range
+	let name = input("Function Name: ")
+
+	" Replace selected code with method call.
+  exec "normal C" . name . "();"
+
+	"exec "'<,'>C" . name . "();"
+	"normal d'>
+	"exec "normal O" . name . "();\<Esc>"
+
+	" Render method declaration
+  "normal [[k
+	"exec "normal O" . name . "()\<CR>{\<CR>}\<ESC>P"
+
+	"normal ''
+	"exec "normal Oprivate void ".funcName." ()\<CR>{\<Esc>"
+	"normal gp
+	"normal O}
+	
+	" Move cursor up to method declaration
+	"normal %k
+endfunction
+
+function! KwrCountI()
+  let g:i = g:i + 1
+  return g:i
+endfunction
+
 
 "===================================================
 " Wiki-notes
 
-" Extrace text to new wiki-notes page
-nnoremap <C-K>xw :new <C-R>..txt<CR>O<!-- *<C-R>.* --><CR><ESC>""p<ESC>Go<!-- vim:set ft=markdown: --><ESC>gg
+" Extract text to new wiki-notes page
+nnoremap <C-K>xw :new <C-R>..md<CR>O<!-- *<C-R>.* --><CR><ESC>""p<ESC>Go<!-- vim:set ft=markdown: --><ESC>gg
 
