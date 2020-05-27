@@ -2,4 +2,4 @@
 *.un~
 *.swp
 plugged
-
+undodir/*

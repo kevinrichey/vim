@@ -1,118 +1,86 @@
-" 
-" Kevin Richey's vimrc basic Vim config file.
-" 
 
-set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"------------------------------------------------------------
+" Local config variables
 
-filetype plugin on
+let s:indent = 4
 
-"----------------------------------------------------------------------
-"      Config Variables
-" Change these to behavior throughout the file.
-"
-let s:tempdir = "temp/"      " Temp folder for backupdir, undodir, etc.
-let s:indent = 4             " Standard indent level
-let g:markdown_folding = 1   " Enable Markdown folding
-
-" Locate my vim files folder
+" Locate my .vim folder in Windows or MSYS
 if isdirectory($HOME."/.vim")
-  let g:myvimfiles = $HOME."/.vim/"
+  let s:vimdir = $HOME."/.vim/"
 elseif isdirectory($HOME."/vimfiles")
-  let g:myvimfiles = $HOME."/vimfiles/"
+  let s:vimdir = $HOME."/vimfiles/"
 else
-  let g:myvimfiles = "."
+  let g:vimdir = "."
 endif
 
-" Setup the temp directory for backup and undo files
-let s:temppath = g:myvimfiles.s:tempdir
-if !isdirectory(s:temppath)
-  mkdir(s:temppath)
-endif
 
-" === my default settings ===
-
-" Indentation & tabs
-set autoindent                " Auto indent
-"set expandtab                 " Spaces, not tabs
-let &tabstop = s:indent       " Tab spacing
-let &shiftwidth = s:indent    " Indent spacing, same as tabs
-
-" Backup, Undo, Spelling
-set autowriteall      " Automatically save when switching buffers
-set writebackup 			" Backup current file
-set nobackup					" Delete the backup file afterwards
-let &backupdir = s:temppath
-let &undodir   = s:temppath
-
-" Figuriong out spell checking files, not ready yet
-" let &spellfile = g:myvimfiles."spell/en.latin1.add"
-
-" Searching
-set ignorecase       " case-insensitive searching
-
-" Display 
-set lbr!             " No line break
-set textwidth=0      " Don't auto-CR at and of a line.
-set number           " Show line numbers
-set laststatus=2     " Always show status line
-                     " Status Line
-                     "   Buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
-set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
-set foldcolumn=3     " Show folding levels in left 3 columns
-
-" GUI
-set guioptions+=b    " Turn on horizontal scroll bar in GUI
-set guifont=consolas:h12
-highlight Folded guibg=Black guifg=DarkGray
-
-"=== My key mappings ===
-
-nmap gf :e <cfile><CR>
-nmap <F1> :help <C-R><C-W><CR>
-
-" Search directory for word under cursor
-nmap <F3> :vimgrep /<C-R><C-W>/j ** <Bar> cw
-
-" Execute current line as vim ex
-nmap <F8> :exec getline(".")<CR>
-
-" Execute current line on the shell
-nmap <F9> :exec "silent ! start ".getline(".")<CR>
-
-
-" Navigate buffers
-nmap <C-PageUp> :bprevious<CR>
-nmap <C-PageDown> :bnext<CR>
-nmap <C-Del> :bdelete!<CR>
-
-" Press spacebar to clear search highlghting
-nnoremap <space> :noh<CR><space>
-
-"=== Custom Menu Commands ====
-
-an Kevin.New\ Page :call Kwr_InsertMarkdownFile()<CR>
-an Kevin.Tag :call Kwr_MakeWikiTag()<CR>
-an Kevin.Link :call Kwr_MakeWikiLink()<CR>
-an Kevin.HelpTags :helptags .<CR>
-an Kevin.Extract\ Page :call KwrExtractMarkdownFile()<CR>
-an Kevin.To\ HTML :!pandoc % -o %:r.html<CR>
-an Kevin.To\ Word :!pandoc % -o %:r.docx<CR>
-an Kevin.Exec\ Vim :exec getline(".")<CR>
-an Kevin.Exec\ Shell :exec "silent ! start ".getline(".")<CR>
-an Kevin._vimrc :split $MYVIMRC
-an Kevin.Plugin :split $HOME/vimfiles/plugin/kevin.vim<CR>
+"------------------------------------------------------------
+" Vim Options
 
 syntax on
-colorscheme palenight
+filetype plugin on
 
-" Change status line over colorscheme
-hi statusline   ctermbg=gray ctermfg=black
-hi statuslineNC ctermfg=darkgray
+set nocompatible
+set noerrorbells
 
-" Load Project-Specific local vim config
+" Formatting & indentation
 
+let &tabstop     = s:indent 
+let &softtabstop = s:indent 
+let &shiftwidth  = s:indent 
+set expandtab autoindent smartindent
+set linebreak textwidth=0   " don't auto-wrap long lines
+
+" Status Line
+"   buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
+set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
+set laststatus=2  showcmd cmdheight=2
+set number
+set foldcolumn=0
+set wildmenu
+
+" Searching
+set ignorecase smartcase incsearch
+set path+=**
+
+" Backup & Undo Stuff
+set autowriteall nobackup noswapfile undofile
+let &undodir = s:vimdir."/undodir"
+
+" Netrw File Browsing Config
+let g:netrw_browse_split = 4   " vert split open file
+let g:netrw_banner       = 0
+let g:netrw_liststyle    = 3
+let s:ghregex='\(^\|\s\s\)\zs\.\S\+'
+"let g:netrw_list_hide    = netrw_gitignore#Hide().s:ghregex
+let g:netrw_list_hide    = s:ghregex
+
+" Markdown Config
+let g:markdown_folding = 1   " Enable Markdown folding
+
+
+"------------------------------------------------------------
+" My Custom Hotkeys
+
+let mapleader = ' '
+
+nnoremap gf :e <cfile><CR>
+vnoremap <C-X>    "+d
+nnoremap <C-V>    "*p
+vnoremap <C-C>    "+y
+inoremap <C-Space>   <C-X><C-I>
+
+nnoremap <Leader>t    :let $VIM_DIR=expand('%:p:h')<CR>:below terminal ++rows=10<CR>cd $VIM_DIR<CR>
+nnoremap <Leader>f    :Lexplore 20<CR>
+
+" Windows & Buffers
+nnoremap <Leader><PageDown>   :bnext<CR>
+nnoremap <Leader><PageUp>     :bprevious<CR>
+nnoremap <Leader><Del>        :bdelete!<CR>
+nnoremap <Leader>+            :vertical resize +5<CR> 
+nnoremap <Leader>-            :vertical resize -5<CR> 
+
+
+" Load Project local vim config
 silent! source .vimlocal
 
