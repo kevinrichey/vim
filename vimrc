@@ -35,9 +35,14 @@ set linebreak textwidth=0   " don't auto-wrap long lines
 "   buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines
 set statusline=%n\ %t\ %m\ %r%w%y%q\ %=\ [0x%B]\ @%o\ (%c,%l)\ %L
 set laststatus=2  showcmd cmdheight=2
-set number
 set foldcolumn=0
 set wildmenu
+
+" Line numbering
+set number relativenumber
+hi LineNrAbove ctermfg=gray
+hi LineNr      ctermfg=white
+hi LineNrBelow ctermfg=gray
 
 " Searching
 set ignorecase smartcase incsearch
@@ -56,7 +61,7 @@ let s:ghregex='\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_list_hide    = s:ghregex
 
 " Markdown Config
-let g:markdown_folding = 1   " Enable Markdown folding
+let g:markdown_folding = 1
 
 
 "------------------------------------------------------------
@@ -65,15 +70,22 @@ let g:markdown_folding = 1   " Enable Markdown folding
 let mapleader = ' '
 
 nnoremap gf :e <cfile><CR>
+
+" Windows style cut/paste/copy
 vnoremap <C-X>    "+d
 nnoremap <C-V>    "*p
 vnoremap <C-C>    "+y
+
+" Ctrl-space to autocomplete
 inoremap <C-Space>   <C-X><C-I>
 
+" Open terminal with Space-t in bottom 10-rows, in current file's directory
 nnoremap <Leader>t    :let $VIM_DIR=expand('%:p:h')<CR>:below terminal ++rows=10<CR>cd $VIM_DIR<CR>
+
+" Open file browser on left, 20 columns wide
 nnoremap <Leader>f    :Lexplore 20<CR>
 
-" Windows & Buffers
+" Quick window & buffer navigation
 nnoremap <Leader><PageDown>   :bnext<CR>
 nnoremap <Leader><PageUp>     :bprevious<CR>
 nnoremap <Leader><Del>        :bdelete!<CR>
