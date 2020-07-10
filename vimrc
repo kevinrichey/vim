@@ -19,6 +19,7 @@ endif
 
 syntax on
 filetype plugin on
+colorscheme kevin
 
 set nocompatible
 set noerrorbells
@@ -65,6 +66,12 @@ let g:markdown_folding = 1
 
 
 "------------------------------------------------------------
+" GUI Options
+
+set guifont=Inconsolata\ 18
+set guicursor+=a:blinkon0
+
+"------------------------------------------------------------
 " My Custom Hotkeys
 
 let mapleader = ' '
@@ -92,6 +99,8 @@ nnoremap <Leader><Del>        :bdelete!<CR>
 nnoremap <Leader>+            :vertical resize +5<CR> 
 nnoremap <Leader>-            :vertical resize -5<CR> 
 
+" Auto-close completion
+inoremap {}  {<CR>}<Esc>O
 
 " Load Project local vim config
 silent! source .vimlocal
