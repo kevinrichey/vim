@@ -13,11 +13,11 @@ hi LineNr        guifg=gray
 hi CursorLineNr  guifg=yellow
 "hi MatchParen    
 "
-hi Statement     guifg=LightGreen  gui=bold
+hi Statement     guifg=LightMagenta gui=bold
 hi Comment       guifg=LightBlue 
 hi Identifier    guifg=white    
 hi PreProc       guifg=LightRed  gui=bold
-hi Type          guifg=LightMagenta 
+hi Type          guifg=LightGreen
 hi Special       guifg=white
 hi Underlined    guifg=white    gui=underline
 hi Constant      guifg=Orange

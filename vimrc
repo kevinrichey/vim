@@ -68,7 +68,7 @@ let g:markdown_folding = 1
 "------------------------------------------------------------
 " GUI Options
 
-set guifont=Inconsolata\ 18
+set guifont=Inconsolata\ 16
 set guicursor+=a:blinkon0
 
 "------------------------------------------------------------
