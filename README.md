@@ -13,30 +13,31 @@ I prefer to stick with a plain and delicious vanilla Vim setup. Which means I do
 
 Let's take a peek in my [vimrc](.https://github.com/kevinrichey/vim/blob/master/vimrc). 
 
-Tabs
-: The One True Correct and Only Indentation Method. If you use spaces, good for you! Consider tabs, though. I used spaces for a long time, until I got sick of them. I indent with four columns per level and use spaces for alignment. 
+### Tabs
+The One True Correct and Only Indentation Method. If you use spaces, good for you! Consider tabs, though. I used spaces for a long time, until I got sick of them. I indent with four columns per level and use spaces for alignment. 
 
-Status Line
-: I customized my status line to like like this:
-: `buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines`
+### Status Line
+I customized my status line to like like this:
 
-Line Numbering
+`buff# filename [+] [RO][Preview][file-type][Quickfix]     [char hex] @offset (col,line) #lines`
+
+### Line Numbering
 : I started using relative line numbering recently. This makes navigation MUCH easier. Vim displays line numbers relative to your current position up and down. When I want to go up to the line "Let's take a peek in my vimrc", I just type 10k, and POOF! I'm there. I know it's 10 lines up because the relative line numbers tell me so.
 
-Searching
-: I turned off case-sensitive search because I'm lazy.
+### Searching
+I turned off case-sensitive search because I'm lazy.
 
-File Browsing
-: One of the few plugins I use is Netrw because it's already included with Vim. I set it up to vertical split on the left, remove the annying banner, and expand sub-folders interactively. Elsewhere, I also setup my *leader*f combo to quickly open the file browser.
+### File Browsing
+One of the few plugins I use is Netrw because it's already included with Vim. I set it up to vertical split on the left, remove the annying banner, and expand sub-folders interactively. Elsewhere, I also setup my *leader*f combo to quickly open the file browser.
 
-Font
-: Inconsolata is an excellent open-source alternative to Microsoft's Consolas font. I set font size to 16 cause my eyes are not as good as they used to be. Be nice to your eyes. 
+### Font
+Inconsolata is an excellent open-source alternative to Microsoft's Consolas font. I set font size to 16 cause my eyes are not as good as they used to be. Be nice to your eyes. 
 
-Hot Keys
-: Space is my leader. It's right there under my thumb all the time. I setup Windows-style cut/copy/paste keys because old happits just won't go away. Leader-t opens the terminal in a new window, leader-f opens the file browser, leader-PgUp/PgDn/Del flips through the buffers, leader + and - resizes my window.
+### Hot Keys
+Space is my leader. It's right there under my thumb all the time. I setup Windows-style cut/copy/paste keys because old happits just won't go away. Leader-t opens the terminal in a new window, leader-f opens the file browser, leader-PgUp/PgDn/Del flips through the buffers, leader + and - resizes my window.
 
-.vimlocal
-: Finally, I load a .vimlocal file from the current directory. .vimlocal is a nifty way to put project-specific settings in a local directory. 
+### .vimlocal
+Finally, I load a .vimlocal file from the current directory. .vimlocal is a nifty way to put project-specific settings in a local directory. 
 
 ## Colors
 
