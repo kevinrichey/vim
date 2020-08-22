@@ -1,5 +1,5 @@
 
-I've been using Vim as my personal code and note taking editor for about 15 years or so.  I lost count.  I remember a coworker friend at SunGard Financial Services (two jobs ago) recommending GVim for [Windows]. GVim is a nice introduction to using Vim because many of the most common commands are accesible through a GUI menu. As I gradually learned to use the Vim command and input modes, I stopped using the menus. 
+I've been using Vim as my personal code and note taking editor for about 15 years or so.  I lost count.  I remember a coworker friend at SunGard Financial Services (two jobs ago) recommending GVim for [Windows](#windows). GVim is a nice introduction to using Vim because many of the most common commands are accesible through a GUI menu. As I gradually learned to use the Vim command and input modes, I stopped using the menus. 
 
 After all that time, I am still far from an expert Vim user, and I'm constantly learning more. Vim has a very steep learning curve, and it's so huge that I'll never know everything about it. 
 
