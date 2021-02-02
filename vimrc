@@ -70,6 +70,8 @@ let g:markdown_folding = 1
 
 set guifont=Inconsolata\ 16
 set guicursor+=a:blinkon0
+set guioptions -=m           " Hide menu bar
+set guioptions -=T           " Hide tool bar
 
 "------------------------------------------------------------
 " My Custom Hotkeys
