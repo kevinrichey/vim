@@ -6,27 +6,27 @@
 nnoremap <C-K>gp  [[?(<CR>
 
 "============================================================
-" C++ Refactoring
+" Refactoring
 
 " Un/commment lines
-nnoremap <C-_>  I//<ESC>j
-nnoremap <C-\>  :s/\/\///<CR>j
+nnoremap <Leader>/   0i//<ESC>j
+nnoremap <Leader>\   :s/\/\///<CR>j
 
 " Move current line up/down
-nnoremap <C-Up>    ddkP
-nnoremap <C-Down>  ddp
+nnoremap <Leader>k  ddkP
+nnoremap <Leader>j  ddp
 
-" Rename Local scope
-nnoremap <C-K>rv Vi{:s/\<<C-R>"\>/<C-R>./gc
+" Rename local variable
+nnoremap <Leader>rv Vi{:s/\<<C-R>"\>/<C-R>./gc
 
 " Add Parameter
-nnoremap <C-K>ap  yiw[[kf)i,<ESC>pb
+nnoremap <Leader>ap  yiw[[kf)i,<ESC>pb
 
 " Rename Parameter
-nnoremap <C-K>rp /{<ESC>V%:s/\<<C-R>"\>/<C-R>./gc
+nnoremap <Leader>rp /{<ESC>V%:s/\<<C-R>"\>/<C-R>./gc
 
 " Extract Variable
-nnoremap <C-K>xv O<C-R>. = <C-R>";<ESC>^
+nnoremap <Leader>xv O<C-R>. = <C-R>";<ESC>I
 
 " Extract Method
 "nnoremap <C-K>xm :call kwrExtractMethod()<CR>

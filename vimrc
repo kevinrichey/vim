@@ -18,8 +18,8 @@ endif
 " Vim Options
 
 syntax on
-filetype plugin on
 colorscheme kevin
+filetype plugin on
 
 set nocompatible
 set noerrorbells
@@ -70,8 +70,10 @@ let g:markdown_folding = 1
 
 set guifont=Inconsolata\ 16
 set guicursor+=a:blinkon0
-set guioptions -=m           " Hide menu bar
-set guioptions -=T           " Hide tool bar
+set guioptions-=m          " Hide menu bar
+set guioptions-=T          " Hide tool bar
+set guioptions-=r          " Hide right scrollbar
+set guioptions-=L          " Hide left scrollbar
 
 "------------------------------------------------------------
 " My Custom Hotkeys
@@ -85,8 +87,8 @@ vnoremap <C-X>    "+d
 nnoremap <C-V>    "*p
 vnoremap <C-C>    "+y
 
-" Ctrl-space to autocomplete
-inoremap <C-Space>   <C-X><C-I>
+" Autocomplete
+"inoremap <Leader><Tab>   <C-X><C-I>
 
 " Open terminal with Space-t in bottom 10-rows, in current file's directory
 nnoremap <Leader>t    :let $VIM_DIR=expand('%:p:h')<CR>:below terminal ++rows=10<CR>cd $VIM_DIR<CR>
@@ -103,6 +105,10 @@ nnoremap <Leader>-            :vertical resize -5<CR>
 
 " Auto-close completion
 inoremap {}  {<CR>}<Esc>O
+
+" Surround/Delete enclosing parens
+nnoremap <Leader>d(     %x``x
+vnoremap <Leader>(      <ESC>a)<ESC>`<i(<ESC>
 
 " Load Project local vim config
 silent! source .vimlocal
