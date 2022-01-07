@@ -109,6 +109,7 @@ inoremap {}  {<CR>}<Esc>O
 " Surround/Delete enclosing parens
 nnoremap <Leader>d(     %x``x
 vnoremap <Leader>(      <ESC>a)<ESC>`<i(<ESC>
+vnoremap <Leader>[      <ESC>a]<ESC>`<i[<ESC>
 
 " Load Project local vim config
 silent! source .vimlocal

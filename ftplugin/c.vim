@@ -11,7 +11,7 @@ set foldenable foldmethod=syntax
 "set cino=+.5s,t0,(0
 
 " Try to limit 80 columns.
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 
