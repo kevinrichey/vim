@@ -22,4 +22,5 @@ hi Constant      ctermfg=yellow  guifg=Orange
 hi MatchParen	 ctermfg=white   guifg=white    gui=reverse
 hi Visual        term=reverse gui=reverse
 hi Parens        ctermfg=LightCyan
+hi Operator      ctermfg=LightBlue
 

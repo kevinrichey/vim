@@ -1,12 +1,10 @@
 
 "============================================================
-" Source navigation
+" Refactoring & Navigation tools
+"============================================================
 
 " Go to Parameters
-nnoremap <C-K>gp  [[?(<CR>
-
-"============================================================
-" Refactoring
+nnoremap <Leader>gp  [[?(<CR>
 
 " Un/commment lines
 nnoremap <Leader>/   0i//<ESC>j
@@ -17,20 +15,20 @@ nnoremap <Leader>k  ddkP
 nnoremap <Leader>j  ddp
 
 " Rename local variable
-nnoremap <Leader>rv Vi{:s/\<<C-R>"\>/<C-R>./gc
+nnoremap <Leader>rv Vi{:s/\<<C-R>"\>/<C-R>./g
 
 " Add Parameter
 nnoremap <Leader>ap  yiw[[kf)i,<ESC>pb
 
 " Rename Parameter
-nnoremap <Leader>rp /{<ESC>V%:s/\<<C-R>"\>/<C-R>./gc
+nnoremap <Leader>rp /{<ESC>V%:s/\<<C-R>"\>/<C-R>./g
 
 " Extract Variable
 nnoremap <Leader>xv O<C-R>. = <C-R>";<ESC>I
 
-" Extract Method
-"nnoremap <C-K>xm :call kwrExtractMethod()<CR>
-nnoremap <C-K>xm  o<C-R>.<CR>{<CR>}<ESC>P
+" Extract Function
+nnoremap <Leader>xf  [[kO<C-R>.<CR>{<CR>}<ESC>P
+
 
 function! KwrExtractMethod() range
 	let name = input("Function Name: ")
