@@ -23,6 +23,7 @@ hi  Constant      ctermfg=yellow                                             gui
 hi  MatchParen    ctermfg=white                                              guifg=white         gui=reverse
 hi  Parens        ctermfg=LightCyan
 hi  QuickFixLine  ctermbg=DarkYellow
+hi  Title         ctermfg=LightMagenta
 
 hi  Visual        term=reverse          gui=reverse
 
