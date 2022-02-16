@@ -24,6 +24,7 @@ hi  MatchParen    ctermfg=white                                              gui
 hi  Parens        ctermfg=LightCyan
 hi  Operator      ctermfg=LightBlue
 hi  QuickFixLine  ctermbg=DarkYellow
+hi  Title         ctermfg=LightMagenta
 
 hi  Visual        term=reverse          gui=reverse
 
