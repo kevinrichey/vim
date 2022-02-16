@@ -90,11 +90,17 @@ vnoremap <C-C>    "+y
 " Autocomplete
 "inoremap <Leader><Tab>   <C-X><C-I>
 
+" Leader map keys
+" - 'o' - open
+" - 'f' - format text/code
+" - 'r' - refactor
+" - 'g' - goto/navigate
+
 " Open terminal with Space-t in bottom 10-rows, in current file's directory
-nnoremap <Leader>t    :let $VIM_DIR=expand('%:p:h')<CR>:below terminal ++rows=10<CR>cd $VIM_DIR<CR>
+nnoremap <Leader>ot    :let $VIM_DIR=expand('%:p:h')<CR>:below terminal ++rows=10<CR>cd $VIM_DIR<CR>
 
 " Open file browser on left, 20 columns wide
-nnoremap <Leader>f    :Lexplore 20<CR>
+nnoremap <Leader>of    :Lexplore 20<CR>
 
 " Quick window & buffer navigation
 nnoremap <Leader><PageDown>   :bnext<CR>
@@ -108,10 +114,42 @@ inoremap {}  {<CR>}<Esc>O
 
 " Surround/Delete enclosing parens
 nnoremap <Leader>d(     %x``x
-vnoremap <Leader>(      <ESC>a)<ESC>`<i(<ESC>
-vnoremap <Leader>[      <ESC>a]<ESC>`<i[<ESC>
-vnoremap <Leader>"      <ESC>a"<ESC>`<i"<ESC>
-vnoremap <Leader><      <ESC>a><ESC>`<i<<ESC>
+vnoremap <Leader>s(      <ESC>a)<ESC>`<i(<ESC>
+vnoremap <Leader>s[      <ESC>a]<ESC>`<i[<ESC>
+vnoremap <Leader>s"      <ESC>a"<ESC>`<i"<ESC>
+vnoremap <Leader>s<      <ESC>a><ESC>`<i<<ESC>
+
+"============================================================
+" Refactoring Keys
+
+" Go to Parameters
+nnoremap <Leader>gp  [[?(<CR>
+
+" Un/commment lines
+nnoremap <Leader>/   0i//<ESC>j
+nnoremap <Leader>\   :s/\/\///<CR>j
+
+" Move current line up/down
+nnoremap <Leader>k  ddkP
+nnoremap <Leader>j  ddp
+
+" Refactor-Rename identifier in scope
+nnoremap <Leader>rr Vi{:s/\<<C-R>"\>/<C-R>./g
+
+" Refactor-Parameter - introduce parameter
+nnoremap <Leader>rp  yiw[[kf)i,<ESC>pb
+
+" Refactor-Variable - introduce variable
+nnoremap <Leader>rv O<C-R>. = <C-R>";<ESC>I
+
+" Refactor-Function - extract function
+nnoremap <Leader>rf  [[kO<C-R>.<CR>{<CR>}<ESC>P
+
+"============================================================
+" Formating keys
+
+" Align into columns
+vnoremap <Leader>fc  !column -t -s ' '<CR>
 
 " Load Project local vim config
 silent! source .vimlocal
