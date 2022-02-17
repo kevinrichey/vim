@@ -1,3 +1,4 @@
 
 syn match Parens /[()\[\]]/
-syn match Operator  /[\+\-\*\/\?\:\>\<\=\!\~\%\&\^,\.]/
+"syn match Operator  /[\+\-\*\/\?\:\>\<\=\!\~\%\&\^,\.]/
+

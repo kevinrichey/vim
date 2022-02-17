@@ -23,5 +23,5 @@ hi MatchParen	 ctermfg=white   guifg=white    gui=reverse
 hi Visual        term=reverse gui=reverse
 hi Parens        ctermfg=LightCyan
 hi Title         ctermfg=LightMagenta
-hi Operator      ctermfg=LightBlue
+"hi Operator      ctermfg=LightBlue
 
